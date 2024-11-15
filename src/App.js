@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import Routes
+import CarList from "./component/CarList";
+import CarDetail from "./component/CarDetail";
+import Login from "./component/Login";
+import SignUp from "./component/Signup";
+import CarForm from "./component/CarForm"; // Import the CarForm component
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container mt-4">
+        <h1>Car Management Application</h1>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/product-list" element={<CarList />} />
+          <Route path="/product/:id/edit" element={<CarForm isEdit={true} />} />
+          <Route path="/product/:id" element={<CarDetail />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
